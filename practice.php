@@ -53,3 +53,14 @@ $str = 'xabx xababx xaabbx';
 $res = preg_replace( '#x(ab)+x#', 'slovo', $str);
 var_dump( $res);
 echo "<hr>";
+
+$str = 'a+x ax aax aaax';
+$res = preg_replace( '#a\+x#', 'slovo', $str);
+var_dump( $res);
+echo "<hr>";
+
+
+//Напишите регулярку, которая найдет строку 'a.a', не захватив остальные.
+$str = 'a.a aba aea';
+$res = preg_replace( '#a\.a#', 'changed', $str);
+echo "<hr>";
