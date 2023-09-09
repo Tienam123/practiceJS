@@ -151,3 +151,45 @@
 //$str = 'ave a#a a2a a$a a4a a5a a-a aca';
 //$res = preg_replace( '#\s+#', '!', $str);
 //var_dump( $res);
+//Напишите регулярку, которая найдет по следующему шаблону: по краям стоят буквы 'a', а между ними - буква 'b', 'e' или 'x'.
+$str1 = 'aba aea aca aza axa';
+$result1 = preg_replace( '#a[abx]a#', 'Tienam', $str1);
+var_dump( $result1);
+echo "<hr>";
+//Напишите регулярку, которая найдет по следующему шаблону: по краям стоят буквы 'a', а между ними - цифра от 3-х до 6-ти.
+$str2 = 'a1a a3a a7a a9a aba';
+$result2= preg_replace( '#a[3-6]a#', 'slovo', $str2);
+var_dump( $result2);
+echo "<hr>";
+//Напишите регулярку, которая найдет по следующему шаблону: по краям стоят буквы 'a', а между ними - буква от a до g.
+$str3 = 'aba aea afa aha aga';
+$result3 = preg_replace( '#a[a-g]a#', 'slovo', $str3);
+var_dump( $result3);
+echo "<hr>";
+//Напишите регулярку, которая найдет по следующему шаблону: по краям стоят буквы 'a', а между ними - буква от a до f и от j до z.
+$str4 = 'aba aea afa aha aga';
+$result4 = preg_replace( '#a[a-zj-z]a#', 'slovo', $str4);
+var_dump( $result4);
+echo "<hr>";
+
+//Напишите регулярку, которая найдет по следующему шаблону: по краям стоят буквы 'a', а между ними - буква от a до f и от A до D.
+$str5 = 'aAa aea aEa aJa a3a';
+$result5 = preg_replace( '#a[a-fA-D]a#', '!', $str5);
+var_dump( $result5);
+echo "<hr>";
+//Напишите регулярку, которая найдет по следующему шаблону: по краям стоят буквы 'a', а между ними - маленькие латинские буквы, не затронув остальных.
+$str6 = 'aAXa aeffa aGha aza ax23a a3sSa';
+$result6 = preg_replace( '#a[a-z]+a#', 'no variable', $str6);
+var_dump( $result6);
+echo "<hr>";
+//Напишите регулярку, которая найдет по следующему шаблону: по краям стоят буквы 'a', а между ними - маленькие и большие латинские буквы, не затронув остальных.
+$str7 = 'aAXa aeffa aGha aza ax23a a3sSa';
+$result7 = preg_replace( '#a[a-zA-Z]+a#', 'no-variable', $str7);
+var_dump( $result7);
+echo "<hr>";
+//Напишите регулярку, которая найдет по следующему шаблону: по краям стоят буквы 'a', а между ними - маленькие латинские буквы и цифры, не затронув остальных.
+$str8 = 'aAXa aeffa aGha aza ax23a a3sSa';
+$result8 = preg_replace( '#a[0-9a-z]+a#', 'no-variable', $str8);
+var_dump( $result8);
+echo "<hr>";
+Окончен урок наборы символов в регулярных  выражениях №193
