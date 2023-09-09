@@ -77,3 +77,22 @@ $str = '23 2+3 2++3 2+++3 345 567';
 $res = preg_replace( '#2\++3#', 'changed', $str);
 var_dump( $res);
 echo "<hr>";
+
+//Напишите регулярку, которая найдет строки '23', '2+3', '2++3', '2+++3', не захватив остальные.
+$str = '23 2+3 2++3 2+++3 445 677';
+$res = preg_replace( '#2\+*3#', 'slovo', $str);
+var_dump( $res);
+echo "<hr>";
+
+
+//Напишите регулярку, которая найдет строки '*q+', '*qq+', '*qqq+', не захватив остальные.
+$str = '*+ *q+ *qq+ *qqq+ *qqq qqq+';
+$res = preg_replace( '#\*q+\+#', 'Tienam', $str);
+var_dump( $res);
+echo "<hr>";
+
+//Напишите регулярку, которая найдет строки в квадратных скобках и заменят их на '!'.
+$str = '[abc] {abc} abc (abc) [abc]';
+$res = preg_replace( '#\[\w{3}\]#', 'Tienam', $str);
+var_dump( $res);
+echo "<hr>";
