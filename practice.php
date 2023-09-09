@@ -44,3 +44,5 @@ var_dump(preg_replace('#ab?a#', 'slovo', $str));
 
 //Напишите регулярку, которая найдет строки 'aa', 'aba', 'abba', 'abbba', не захватив 'abca' и 'abea'.
 $str = 'aa aba abba abbba abca abea';
+var_dump(preg_replace('#ab*a#','slovo',$str));
+
