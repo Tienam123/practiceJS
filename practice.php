@@ -118,3 +118,4 @@ $str = 'aa aba abba abbba abbbba abbbbba';
 $res = preg_replace( '#ab{4,}a#', 'Tienam', $str);
 var_dump( $res);
 echo "<hr>";
+
