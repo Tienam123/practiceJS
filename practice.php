@@ -34,3 +34,13 @@ $str = 'aa aba abba abbba abca abea';
 $res = preg_replace('#ab+a#', 'slovo', $str);
 var_dump($res);
 
+//Напишите регулярку, которая найдет строки по шаблону: буква 'a', буква 'b' ноль или более раз, буква 'a'.
+$str = 'aa aba abba abbba abca abea';
+var_dump(preg_replace('#ab?a#', 'slovo', $str));
+
+//Напишите регулярку, которая найдет строки по шаблону: буква 'a', буква 'b' один раз или ниодного, буква 'a'.
+$str = 'aa aba abba abbba abca abea';
+var_dump(preg_replace('#ab?a#', 'slovo', $str));
+
+//Напишите регулярку, которая найдет строки 'aa', 'aba', 'abba', 'abbba', не захватив 'abca' и 'abea'.
+$str = 'aa aba abba abbba abca abea';
