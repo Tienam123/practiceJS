@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+input {
+    margin: 10px;
+    border: 1px solid teal;
+    color: teal;
+}
+
+button {
+    margin: 10px;
+    background-color: transparent;
+    border: 1px solid teal;
+    color: teal;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: teal;
+    color: white;
+}
