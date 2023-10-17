@@ -1,28 +1,30 @@
-body {
+.container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin: 100px 50px 50px 50px;
 }
 
-input {
-    margin: 10px;
-    border: 1px solid teal;
-    color: teal;
+.content {
+    width: 156px;
+    border: 1px solid black;
+    margin: 0 auto;
 }
 
-button {
-    margin: 10px;
-    background-color: transparent;
-    border: 1px solid teal;
-    color: teal;
-    border-radius: 4px;
-    padding: 10px 20px;
+.item {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+    border: 1px solid black;
     cursor: pointer;
+    vertical-align: middle;
+    transition: background .1s;
 }
 
-button:hover {
-    background-color: teal;
-    color: white;
+.item:hover {
+    background-color: #f1f1f10c;
+}
+.result {
+    text-align: center;
 }

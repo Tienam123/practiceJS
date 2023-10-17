@@ -1,48 +1,69 @@
-const list = document.querySelector('#table');
-let users = [
-  {
-    name: 'name',
-    age: 'age',
-    salary: 'salary',
-  },
-  {name: 'employee1', age: 30, salary: 400},
-  {name: 'employee2', age: 31, salary: 500},
-  {name: 'employee3', age: 32, salary: 600},
+const container = document.querySelector('.js-content');
+const tittle = document.querySelector('.result');
+let player = 'X';
+let historyX = [];
+let historyO = [];
+const wins = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [3, 5, 7],
 ];
-for (let i = 0; i < users.length; i++) {
-  const tr = document.createElement('tr');
-  for (const userKey in users[i]) {
-    if (i === 0) {
-      const th = document.createElement('th');
-      th.textContent = users[i][userKey];
-      th.style.padding = '10px';
-      tr.append(th);
-    } else {
-      const td = document.createElement('td');
-      td.setAttribute('value', userKey);
-      td.style.padding = '10px';
-      td.style.outline = '1px solid red';
-      td.textContent = users[i][userKey];
-      tr.append(td);
-      if (td.getAttribute('value') === 'age') {
 
-      }
-    }
+function createMarkup() {
+  let markup = '';
+  for (let i = 1; i < 10; i++) {
+    markup += `<div class='item' data-id='${i}'></div>`;
   }
-  list.append(tr);
+  container.innerHTML = markup;
 }
-list.style.textAlign = 'center';
 
-list.addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) {
+createMarkup();
+container.addEventListener('click', onClick);
+
+function onClick(event) {
+  const { target } = event;
+
+  if (target == this || target.textContent) {
     return;
   }
-  if (e.target.getAttribute('value') === 'age') {
-    let value = +e.target.textContent;
-    e.target.innerHTML = value + 1;
+  const id = Number(target.dataset.id);
+  let result = false;
+
+  if (player == 'X') {
+    historyX.push(id);
+    result = isWinner(wins, historyX);
+  } else {
+    historyO.push(id);
+    result = isWinner(wins, historyO);
   }
-  if (e.target.getAttribute('value') === 'salary') {
-    let salary = e.target.textContent * 0.1;
-    e.target.innerHTML = Math.round(+e.target.textContent + salary);
+  target.textContent = player;
+  if (result) {
+    let message = `Победитель ${player} 😍👏😜`;
+    tittle.innerHTML = message;
+    setTimeout(resetGame, 3000);
+    return;
+  } else if (historyO.length + historyX.length === 9) {
+    message = `Ничья, попробуйте снова`;
+    tittle.innerHTML = message;
+    setTimeout(resetGame, 3000);
+    return;
   }
-});
+  player = player === 'X' ? 'O' : 'X';
+}
+
+function isWinner(arrWins, player) {
+  return arrWins.some(item => item.every(id => player.includes(id)));
+}
+
+function resetGame() {
+  createMarkup();
+  historyX = [];
+  historyO = [];
+  player = 'X';
+  tittle.innerHTML = 'Крестики нолики';
+}
