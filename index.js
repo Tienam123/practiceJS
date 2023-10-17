@@ -1,69 +1,59 @@
-const container = document.querySelector('.js-content');
-const tittle = document.querySelector('.result');
-let player = 'X';
-let historyX = [];
-let historyO = [];
-const wins = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-  [1, 4, 7],
-  [2, 5, 8],
-  [3, 6, 9],
-  [1, 5, 9],
-  [3, 5, 7],
-];
+import auto from "./recipes.js";
+// Определяем DOM елементы
+const list = document.querySelector('.cards');
 
-function createMarkup() {
-  let markup = '';
-  for (let i = 1; i < 10; i++) {
-    markup += `<div class='item' data-id='${i}'></div>`;
-  }
-  container.innerHTML = markup;
+const instance = basicLightbox.create(`
+    <div class="modal">
+        <div class="container-image" style="width: 100%;height: 80%;background: #fff;">
+        <img src="" alt="">
+        <div class="container-text" style="width: 100%;height: 20%;background: #fff;">
+        <img src="" alt="">
+         <h3 class="title">A custom modal that has been styled independently. It's not part of basicLightbox, but perfectly shows its flexibility.</h3>
+    </div>
+`, {
+    closable: false,
+    onShow: (instance) => {
+        instance.element().addEventListener('click', onCloseCard)
+        window.addEventListener('keydown', onPressKey)
+    },
+})
+// Определяем разметку
+const markup = auto.map(el => {
+    return `<li class="js-target" data-car-url="${el.image}" data-car-title="${el.name}">
+<img class="js-target"  src="${el.image}" width="300" height="200">
+<h3 class="js-target">${el.name}</h3>
+<p class="js-target">${el.price}</p>
+</li>`
+}).join('');
+list.insertAdjacentHTML('beforeend', markup)
+// Делегируем события по клику
+list.addEventListener('click', onClickCard);
+
+function onClickCard(event) {
+    const {image, id} = auto;
+    if (event.target == this) {
+        return;
+    }
+    const item = event.target.dataset.carUrl ?? event.target.closest('li').dataset.carUrl;
+    instance.show(() => {
+        instance.element().querySelector('img').src = '';
+        instance.element().querySelector('img').src = item;
+        instance.element().querySelector('h3.title').textContent = event.target.dataset.carTitle ?? event.target.closest('li').dataset.carTitle;
+    });
 }
 
-createMarkup();
-container.addEventListener('click', onClick);
-
-function onClick(event) {
-  const { target } = event;
-
-  if (target == this || target.textContent) {
-    return;
-  }
-  const id = Number(target.dataset.id);
-  let result = false;
-
-  if (player == 'X') {
-    historyX.push(id);
-    result = isWinner(wins, historyX);
-  } else {
-    historyO.push(id);
-    result = isWinner(wins, historyO);
-  }
-  target.textContent = player;
-  if (result) {
-    let message = `Победитель ${player} 😍👏😜`;
-    tittle.innerHTML = message;
-    setTimeout(resetGame, 3000);
-    return;
-  } else if (historyO.length + historyX.length === 9) {
-    message = `Ничья, попробуйте снова`;
-    tittle.innerHTML = message;
-    setTimeout(resetGame, 3000);
-    return;
-  }
-  player = player === 'X' ? 'O' : 'X';
+// Добавляем событие на клик в любую часть екрана
+function onCloseCard(e) {
+    instance.close()
+    removeEventListener("click", onCloseCard)
 }
 
-function isWinner(arrWins, player) {
-  return arrWins.some(item => item.every(id => player.includes(id)));
+// Добавляем событие на клик по кнопке Esc
+function onPressKey(e) {
+    if (e.code === 'Escape') {
+        instance.close();
+        removeEventListener('keydown', onPressKey)
+    }
 }
 
-function resetGame() {
-  createMarkup();
-  historyX = [];
-  historyO = [];
-  player = 'X';
-  tittle.innerHTML = 'Крестики нолики';
-}
+console.log(_.throttle)
