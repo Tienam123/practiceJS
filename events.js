@@ -57,3 +57,60 @@ console.log('height ' + r1.height);
 console.log('area ' + r1.area);
 */
 
+/*
+
+class Rect {
+  constructor(width, height) {
+    this._width = width;
+    this._height = height;
+  }
+
+  get width() {
+    if (this._width === undefined) {
+      this._width = 0;
+    }
+    return this._width;
+  }
+
+//   setter - синтаксис , сввязывающий свойство обьекта с функцией
+//   setter вызыввается во время присвоения значения свойству
+//   присваиваемое значение попадает в качестве значения параметра setter
+  set width(value) {
+    this._width = value;
+  }
+
+  get height() {
+    return this._height;
+  }
+
+  set height(value) {
+    this._height = value;
+  }
+
+  get area() {
+    return this._height * this._width; //использование getter
+  }
+}
+
+let r1 = new Rect(10, 20);
+
+r1.height = 30;
+r1.width = 110;
+console.log('width ' + r1.width);
+console.log('height ' + r1.height);
+console.log('area ' + r1.area);*/
+
+class Rect {
+  height = 0;
+  width = 0;
+
+  getArea() {
+    return this.height * this.width;
+  }
+}
+
+let r = new Rect();
+r.height = 10;
+r.width = 20;
+
+console.log(r.getArea());
