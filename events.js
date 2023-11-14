@@ -56,7 +56,6 @@ console.log('width ' + r1.width);
 console.log('height ' + r1.height);
 console.log('area ' + r1.area);
 */
-
 /*
 
 class Rect {
@@ -99,7 +98,7 @@ r1.width = 110;
 console.log('width ' + r1.width);
 console.log('height ' + r1.height);
 console.log('area ' + r1.area);*/
-
+/*
 class Rect {
   height = 0;
   width = 0;
@@ -113,4 +112,21 @@ let r = new Rect();
 r.height = 10;
 r.width = 20;
 
-console.log(r.getArea());
+console.log(r.getArea());*/
+/*
+class Rect {
+  #name = '';
+
+  constructor(name) {
+    this.#name = name;
+  }
+
+  getName() {
+    return this.#name;
+  }
+}
+
+let u = new Rect('Vladyslav');
+console.log(u.getName());
+console.log(u);
+*/
